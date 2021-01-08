@@ -37,7 +37,7 @@
         <!-- The first card's button doesn't go anywhere, it could be a modal -->
         <!-- My second card limits the information seen and uses collapsible to show more -->
         <div class="container" id=searchItems>
-            <form onsubmit="getOMDBApiCall(searchItem)">
+            <form onsubmit="getOMDBApiCall({'searchedItem':searchItem})">
                 Enter Title: <input type="text" id="searchItem" name="searchItem">
                 <input type="submit" value="Submit">
             </form>
