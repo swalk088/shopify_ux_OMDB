@@ -1,7 +1,7 @@
 
 
-function getOMDBApiCall(){
-    $.getJSON("http://www.omdbapi.com/?apikey=[e82e9afb]&").then(function(response){
+function getOMDBApiCall(searchedItem){
+    $.getJSON("http://www.omdbapi.com/?apikey=[e82e9afb]&s="+searchedItem).then(function(response){
         console.log(response);
     })
 }

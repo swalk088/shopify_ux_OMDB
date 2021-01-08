@@ -37,7 +37,10 @@
         <!-- The first card's button doesn't go anywhere, it could be a modal -->
         <!-- My second card limits the information seen and uses collapsible to show more -->
         <div class="container" id=hairdressers>
-            <button type="button" class="btn btn-info btn-lg" onclick="getOMDBApiCall();">Get API stuff</button>
+            <form onsubmit="getOMDBApiCall(searchItem)">
+                Enter Title: <input type="text" name="searchItem">
+                <input type="submit" value="Submit">
+            </form>
 
         </div>
 
