@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>The Shoppies</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Style sheet (CSS) and JavaScript scripts necessary to use Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- Your own additional style sheet -->
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/excite-bike/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <link href="styles/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://kit.fontawesome.com/c92ecd07ed.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+
+
+    </div>
+
+    <div class="content">
+
+
+
+        <!-- Presenting the staff with cards: https://www.w3schools.com/bootstrap4/bootstrap_cards.asp -->
+        <!-- Card columns allows multiple cards next to each other -->
+        <!-- The first card's button doesn't go anywhere, it could be a modal -->
+        <!-- My second card limits the information seen and uses collapsible to show more -->
+        <div class="container" id=hairdressers>
+            <button type="button" class="btn btn-info btn-lg" onclick="getOMDBApiCall();">Get API stuff</button>
+
+        </div>
+
+        <br>
+
+
+
+
+    <div id="failure_modal" class="modal">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box" style="background: #ef513a;">
+                        <i class="material-icons">&#xE5CD;</i>
+                    </div>
+                    <h4 class="modal-title">Whoops!</h4>
+                </div>
+                <div class="modal-body" id="failure-modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" style="background: #ef513a;">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="success_modal" class="modal">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box" style="background: #82ce34;">
+                        <i class="material-icons">&#xE876;</i>
+                    </div>
+                    <h4 class="modal-title">Success!</h4>
+                </div>
+                <div class="modal-body" id="success-modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-block" data-dismiss="modal" style="background: #82ce34;">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js "></script>
+
+
+</body>
+
+<footer>Website designed by Simon Walker</footer>
+
+</html>
