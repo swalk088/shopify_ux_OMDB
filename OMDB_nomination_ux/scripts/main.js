@@ -11,7 +11,20 @@ function getOMDBApiCall(searchedItem){
 //using TMDB database api to get movie images to improve user experience
 function getMoviePicture(searchedMovie){
     var main_call="https://api.themoviedb.org/3/search/movie?api_key=7c6c3f52787e7909886d3e15d34a0035&language=en-US&query="+searchedMovie+"&pages=1&include_adult=false";
+    var movie_info=null;
+    var movie_id=null;
     fetch(main_call)
   .then(response => response.json())
-  .then(data=>console.log(data));
+  .then(data=>movie_info=data.results);
+    for(var i=0;i<movie_info.length;i++){
+        if(movie_info[i].original_title==searchedMovie){
+            movie_id=movie_info[i].id;
+        }
+    }
+    var main_picture_call="https://api.themoviedb.org/3/movie/"+movie_id+"/images?api_key=7c6c3f52787e7909886d3e15d34a0035&"
+    var poster_info=null;
+    fetch(main_picture_call)
+  .then(response => response.json())
+  .then(data=>poster_info=data.posters);
+  console.log(poster_info)
 }
