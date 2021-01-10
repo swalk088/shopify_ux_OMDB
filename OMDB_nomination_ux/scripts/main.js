@@ -40,7 +40,7 @@ function trackSearchChanges(searchedItem) {
     var input, filter, ul, li, a, i, txtValue;
     filter = searchedItem.value.toUpperCase();
     ul = document.getElementById("movieSearch");
-    console.log(searchedItem)
+    console.log(searchedItem);
     // Loop through all list items, and hide those who don't match the search query
     // for (i = 0; i < li.length; i++) {
     //   a = li[i].getElementsByTagName("a")[0];
