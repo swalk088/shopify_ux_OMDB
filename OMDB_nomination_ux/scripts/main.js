@@ -15,12 +15,14 @@ function getMoviePicture(searchedMovie){
     var movie_id=null;
     fetch(main_call)
   .then(response => response.json())
-  .then(data=>movie_id=data.results[0].id);
-   
+  .then(function(data){movie_id=data.results[0].id
     var main_picture_call="https://api.themoviedb.org/3/movie/"+movie_id+"/images?api_key=7c6c3f52787e7909886d3e15d34a0035&"
     var poster_info=null;
     fetch(main_picture_call)
   .then(response => response.json())
   .then(data=>poster_info=data.posters);
   console.log(poster_info)
+    });
+   
+   
 }
