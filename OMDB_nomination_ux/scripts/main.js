@@ -13,7 +13,7 @@ function getMoviePicture(searchedMovie){
     var main_call="https://api.themoviedb.org/3/search/movie?api_key=7c6c3f52787e7909886d3e15d34a0035&language=en-US&query="+searchedMovie+"&pages=1&include_adult=false";
     var movie_info=null;
     var movie_id=null;
-    await fetch(main_call)
+    fetch(main_call)
   .then(response => response.json())
   .then(data=>movie_id=data.results[0].id);
    
