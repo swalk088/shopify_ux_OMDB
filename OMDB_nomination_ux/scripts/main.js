@@ -12,5 +12,6 @@ function getOMDBApiCall(searchedItem){
 function getMoviePicture(searchedMovie){
     var main_call="https://api.themoviedb.org/3/search/movie?api_key=7c6c3f52787e7909886d3e15d34a0035&language=en-US&query="+searchedMovie;
     fetch(main_call)
-  .then(response => console.log(response));
+  .then(response => response.json())
+  .then(data=>console.log(data));
 }
