@@ -4,10 +4,10 @@ async function getOMDBApiCall(searchedItem){
     var current_searched_list=[];
     console.log(searchedItem)
     $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem).then(function(response){
-        //console.log(response);
-        current_searched_list=response.search;
-        for(var i=0;i<current_searched_list.length;i++){
-            console.log(current_searched_list[i]);
+        console.log(response);
+        //current_searched_list=response.search;
+        for(var i=0;i<response.search.length;i++){
+            console.log(response.search[i]);
         }
 
     })
