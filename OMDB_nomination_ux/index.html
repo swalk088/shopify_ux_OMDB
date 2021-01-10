@@ -31,7 +31,7 @@
     <div class="content">
 
         <div class="title">
-            The Shoppies
+            <h1>The Shoppies</h1>
         </div>
 
         <!-- Presenting the staff with cards: https://www.w3schools.com/bootstrap4/bootstrap_cards.asp -->
@@ -39,12 +39,13 @@
         <!-- The first card's button doesn't go anywhere, it could be a modal -->
         <!-- My second card limits the information seen and uses collapsible to show more -->
         <div class="container" id=searchItems>
-                Enter Title: <input type="text" id="searchedItem" name="searchItem">
-                <button type="submit" value="Submit" onclick="getOMDBApiCall(searchedItem.value)">Submit</button>
+                <input type="text" id="searchedItem" name="searchItem" placeholder="Enter Movie Title..." onkeyup="trackSearchChanges(searchedItem.value)">
         </div>
     </div>
     <div>
-       
+        <ul id="movieSearch">
+            
+        </ul>
 
     </div>
     <script src="scripts/main.js "></script>
