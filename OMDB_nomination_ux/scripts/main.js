@@ -10,6 +10,7 @@ function getOMDBApiCall(searchedItem){
             var li = document.createElement("li");
             li.setAttribute("id",current_searched_list[i].imdbID)
             li.appendChild(document.createTextNode(current_searched_list[i].Title));
+            console.log(li);
             ul.appendChild(li);
         }
 
