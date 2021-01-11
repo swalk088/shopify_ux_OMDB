@@ -13,13 +13,12 @@ async function getOMDBApiCall(searchedItem){
     var response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem);
     console.log(response);
     current_searched_list=response.Search;
-    console.log()
     
     
-    console.log(ul);
+    console.log(current_searched_list);
     if (current_searched_list!==undefined){
         for(var i=0;i<current_searched_list.length;i++){
-            console.log(current_searched_list[i]);
+            //console.log(current_searched_list[i]);
             var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&t="+current_searched_list[i].Title)
             console.log(title_response);  
             // var li = document.createElement("li");
