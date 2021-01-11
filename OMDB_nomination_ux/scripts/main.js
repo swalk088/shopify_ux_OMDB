@@ -65,19 +65,17 @@ function checkElementDoesntExist(elementId){
     }
 }
 
-async function trackSearchChanges(searchedItem) {
-    // Declare variables
-        console.log(searchedItem);
-        
-        await getOMDBApiCall(searchedItem);
+async function trackSearchChanges() {
+    var searchedItem = document.getElementById("searchedItem").value;
+    console.log(searchedItem);
+    
+    await getOMDBApiCall(searchedItem);
 
        
 }
 
-function nominateMovie(nominatedMovieInfo){
-    console.log(nominatedMovies);
-    console.log(current_searched_list);
-    console.log(nominatedMovieInfo);
+function nominateMovie(){
+    console.log("Nominate movie");
 }
 
 function setCollapsibleOnclick(){
