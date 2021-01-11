@@ -2,7 +2,6 @@ var nominatedMovies=[];
 var current_searched_list=[];
 
 async function getOMDBApiCall(searchedItem){
-    currentlySearching=true;
     
     console.log(searchedItem);
     var response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem);
@@ -10,7 +9,6 @@ async function getOMDBApiCall(searchedItem){
     current_searched_list=response.Search;
     
     removeAllList();
-    console.log(current_searched_list);
     if (current_searched_list!==undefined){
         for(var i=0;i<current_searched_list.length;i++){
             if(document.getElementById(current_searched_list[i].imdbID)==undefined) {
@@ -21,7 +19,6 @@ async function getOMDBApiCall(searchedItem){
                     current_searched_list[i].Title,current_searched_list[i].Year,
                     current_searched_list[i].Poster,title_response);
         
-                console.log();
 
             }
         }
@@ -30,7 +27,6 @@ async function getOMDBApiCall(searchedItem){
 }
 
 function loadListItem(id,title,year,poster_url,movie_info){
-    removeLiElementById(id);
     var ul = document.getElementById("movieSearch"); 
     var li = document.createElement("li");
     li.setAttribute("id",id)
@@ -45,26 +41,27 @@ function loadListItem(id,title,year,poster_url,movie_info){
     innerHTML+="<p>Actors: "+movie_info.Actors+"</p>"
     innerHTML+="<p>"+movie_info.Plot+"</p>"
     innerHTML+="</div>";
-    console.log(innerHTML);
     li.innerHTML=innerHTML;
     if(checkElementDoesntExist(id)){
+        console.log(ul)
         ul.appendChild(li);
+        setCollapsibleOnclick();
     }
 }
 function removeAllList(){
     var ul = document.getElementById("movieSearch");
 
-    while (ul.firstChild) {
-        ul.removeChild(ul.lastChild);
+    while (ul.lastChild) {
+        ul.removeChild(ul.firstChild);
     }
     console.log("removed all")
 }
 function checkElementDoesntExist(elementId){
     var elem = document.getElementById(elementId);
-    if(elem!==null){
-        return false
-    }else{
+    if(elem==null){
         return true
+    }else{
+        return false
     }
 }
 
@@ -74,26 +71,30 @@ async function trackSearchChanges(searchedItem) {
         
         await getOMDBApiCall(searchedItem);
 
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                console.log("activated event")
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                console.log(content);
-                if (content.style.maxHeight){
-                content.style.maxHeight = null;
-                } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
-        }
+       
 }
 
 function nominateMovie(nominatedMovieInfo){
     console.log(nominatedMovies);
     console.log(current_searched_list);
     console.log(nominatedMovieInfo);
+}
+
+function setCollapsibleOnclick(){
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            console.log("activated event")
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            console.log(content);
+            if (content.style.maxHeight){
+            content.style.maxHeight = null;
+            } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
 }
