@@ -1,8 +1,9 @@
 var nominatedMovies=[];
 var current_searched_list=[];
-
+var currentlySearching=false;
 
 async function getOMDBApiCall(searchedItem){
+    currentlySearching=true;
     var ul = document.getElementById("movieSearch"); 
 
     while (ul.firstChild) {
@@ -20,7 +21,7 @@ async function getOMDBApiCall(searchedItem){
         for(var i=0;i<current_searched_list.length;i++){
             //console.log(current_searched_list[i]);
             var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&t="+current_searched_list[i].Title)
-            console.log(title_response); 
+            console.log(title_response);
             // var li = document.createElement("li");
             // li.setAttribute("id",current_searched_list[i].imdbID)
             // console.log(current_searched_list[i].Title)
@@ -45,27 +46,26 @@ async function getOMDBApiCall(searchedItem){
 
 function trackSearchChanges(searchedItem) {
     // Declare variables
-    var input, filter, ul, li, a, i, txtValue;
-    filter = searchedItem;
-    ul = document.getElementById("movieSearch");
-    console.log(searchedItem);
-    getOMDBApiCall(searchedItem);
+    if (!currentlySearching){
+        console.log(searchedItem);
+        getOMDBApiCall(searchedItem);
 
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
 
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-            console.log("activated event")
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            console.log(content);
-            if (content.style.maxHeight){
-            content.style.maxHeight = null;
-            } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                console.log("activated event")
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                console.log(content);
+                if (content.style.maxHeight){
+                content.style.maxHeight = null;
+                } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
     }
 }
 
