@@ -19,7 +19,7 @@ function getOMDBApiCall(searchedItem){
                 li.setAttribute("id",current_searched_list[i].imdbID)
                 console.log(current_searched_list[i].Title)
                 var innerHTML="<button oclick'nominateMovie()'>Nominate</button><button type='button' class='collapsible'><img src='"+current_searched_list[i].Poster+"' width=50/> "+current_searched_list[i].Title+" ("+current_searched_list[i].Year+")</button>"
-                innerHTML+="<div class='content'>
+                innerHTML+="<div class='content'>"
                 innerHTML+="<p>Rated: "+title_response.Rated+"</p>"
                 innerHTML+="<p>Release: "+title_response.Release+"</p>"
                 innerHTML+="<p>Genre: "+title_response.Genre+"</p>"
