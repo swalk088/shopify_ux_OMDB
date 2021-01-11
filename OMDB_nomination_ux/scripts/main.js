@@ -81,11 +81,14 @@ function setCollapsibleOnclick(){
       coll[i].addEventListener("click", function() {
         this.classList.toggle("active");
         var content = this.nextElementSibling;
+        console.log(content.style.display);
         if (content.style.display === "block") {
           content.style.display = "none";
         } else {
           content.style.display = "block";
         }
+        console.log("trying to d other right thing");
+        console.log(content.style.display);
       });
     }
 }
