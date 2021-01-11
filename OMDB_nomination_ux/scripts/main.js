@@ -14,7 +14,7 @@ function getOMDBApiCall(searchedItem){
             var li = document.createElement("li");
             li.setAttribute("id",current_searched_list[i].imdbID)
             console.log(current_searched_list[i].Title)
-            li.innerHTML="<img src='"+current_searched_list[i].Poster+"' width=50/> "+current_searched_list[i].Title+" ("+current_searched_list[i].Year+")     <button>Nominate</button>";
+            li.innerHTML="<img src='"+current_searched_list[i].Poster+"' width=50/> "+current_searched_list[i].Title+" ("+current_searched_list[i].Year+")     <button oclick'nominateMovie("+current_searched_list[i]+")'>Nominate</button>";
             console.log(li);
             ul.appendChild(li);
         }
@@ -30,16 +30,8 @@ function trackSearchChanges(searchedItem) {
     ul = document.getElementById("movieSearch");
     console.log(searchedItem);
     getOMDBApiCall(searchedItem);
-    //console.log(current_searched_list);
-    
-    // Loop through all list items, and hide those who don't match the search query
-    // for (i = 0; i < li.length; i++) {
-    //   a = li[i].getElementsByTagName("a")[0];
-    //   txtValue = a.textContent || a.innerText;
-    //   if (txtValue.toUpperCase().indexOf(filter) > -1) {
-    //     li[i].style.display = "";
-    //   } else {
-    //     li[i].style.display = "none";
-    //   }
-    // }
-  }
+}
+
+function nominateMovie(nominatedMovieInfo){
+    console.log(nominatedMovieInfo);
+}
