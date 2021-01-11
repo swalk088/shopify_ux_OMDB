@@ -43,11 +43,10 @@ function loadListItem(id,title,year,poster_url,movie_info){
     innerHTML+="<p>"+movie_info.Plot+"</p>"
     innerHTML+="</div>";
     li.innerHTML=innerHTML;
-    if(checkElementDoesntExist(id)){
-        console.log(ul)
-        ul.appendChild(li);
-        setCollapsibleOnclick();
-    }
+
+    ul.appendChild(li);
+    setCollapsibleOnclick();
+    
 }
 function removeAllList(){
     var ul = document.getElementById("movieSearch");
@@ -57,21 +56,15 @@ function removeAllList(){
     }
     console.log("removed all")
 }
-function checkElementDoesntExist(elementId){
-    var elem = document.getElementById(elementId);
-    if(elem==null){
-        return true
-    }else{
-        return false
-    }
-}
+
 
 function trackSearchChanges() {
     var searchedItem = document.getElementById("searchedItem").value;
-    if(searchedItem!==currentSearch){
+    if(searchedItem.trim()!==currentSearch){
         currentSearch=searchedItem;
         console.log(searchedItem);
         getOMDBApiCall(searchedItem);
+        setCollapsibleOnclick();
     }
        
 }
