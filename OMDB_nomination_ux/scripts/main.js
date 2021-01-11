@@ -21,8 +21,6 @@ async function getOMDBApiCall(searchedItem){
                     current_searched_list[i].Title,current_searched_list[i].Year,
                     current_searched_list[i].Poster,title_response);
         
-                console.log();
-
             }
         }
     }
@@ -35,7 +33,7 @@ function loadListItem(id,title,year,poster_url,movie_info){
     var li = document.createElement("li");
     li.setAttribute("id",id)
     console.log(title)
-    var innerHTML="<button onclick='nominateMovie()'>Nominate</button><button type='button' class='collapsible'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
+    var innerHTML="<button type='button' class='collapsible'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")  <button onclick='nominateMovie()'>Nominate</button></button>"
     innerHTML+="<div class='content'>"
     innerHTML+="<p>Rated: "+movie_info.Rated+"</p>"
     innerHTML+="<p>Release: "+movie_info.Released+"</p>"
@@ -47,7 +45,9 @@ function loadListItem(id,title,year,poster_url,movie_info){
     innerHTML+="</div>";
     console.log(innerHTML);
     li.innerHTML=innerHTML;
-    ul.appendChild(li);
+    if(checkElementDoesntExist(id)){
+        ul.appendChild(li);
+    }
 }
 function removeAllList(){
     var ul = document.getElementById("movieSearch");
@@ -57,10 +57,13 @@ function removeAllList(){
     }
     console.log("removed all")
 }
-function removeLiElementById(elementId){
+function checkElementDoesntExist(elementId){
     var elem = document.getElementById(elementId);
-    elem.parentNode.removeChild(elem);
-    console.log(elementId);
+    if(elem!==null){
+        return false;
+    }else{
+        return true;
+    }
 }
 
 async function trackSearchChanges(searchedItem) {
@@ -89,8 +92,8 @@ async function trackSearchChanges(searchedItem) {
     // }
 }
 
-function nominateMovie(nominatedMovieInfo){
-    console.log(nominatedMovies);
-    console.log(current_searched_list);
-    console.log(nominatedMovieInfo);
+function nominateMovie(){
+//     console.log(nominatedMovies);
+//     console.log(current_searched_list);
+    console.log("Nominated movie");
 }
