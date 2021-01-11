@@ -20,7 +20,7 @@ async function getOMDBApiCall(searchedItem){
         for(var i=0;i<current_searched_list.length;i++){
             //console.log(current_searched_list[i]);
             var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&t="+current_searched_list[i].Title)
-            console.log(title_response);  
+            console.log(title_response); 
             // var li = document.createElement("li");
             // li.setAttribute("id",current_searched_list[i].imdbID)
             // console.log(current_searched_list[i].Title)
