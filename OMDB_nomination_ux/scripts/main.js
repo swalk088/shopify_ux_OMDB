@@ -38,7 +38,6 @@ async function getOMDBApiCall(searchedItem){
                 innerHTML+="</div>";
                 console.log(innerHTML);
                 li.innerHTML=innerHTML;
-           
                 ul.appendChild(li);
             }
         }
