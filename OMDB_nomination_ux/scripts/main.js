@@ -28,7 +28,6 @@ async function getOMDBApiCall(searchedItem){
 }
 
 function loadListItem(id,title,year,poster_url,movie_info){
-    removeLiElementById(id);
     var ul = document.getElementById("movieSearch"); 
     var li = document.createElement("li");
     li.setAttribute("id",id)
@@ -47,6 +46,7 @@ function loadListItem(id,title,year,poster_url,movie_info){
     li.innerHTML=innerHTML;
     if(checkElementDoesntExist(id)){
         ul.appendChild(li);
+        setCollapsiblesOnclick();
     }
 }
 function removeAllList(){
@@ -73,22 +73,7 @@ async function trackSearchChanges(searchedItem) {
         
         await getOMDBApiCall(searchedItem);
 
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                console.log("activated event")
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                console.log(content);
-                if (content.style.maxHeight){
-                content.style.maxHeight = null;
-                } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
-        }
+        
     // }
 }
 
@@ -96,4 +81,23 @@ function nominateMovie(){
 //     console.log(nominatedMovies);
 //     console.log(current_searched_list);
     console.log("Nominated movie");
+}
+
+function setCollapsiblesOnclick(){
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            console.log("activated event")
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            console.log(content);
+            if (content.style.maxHeight){
+            content.style.maxHeight = null;
+            } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
 }
