@@ -28,6 +28,7 @@ async function getOMDBApiCall(searchedItem){
 }
 
 function loadListItem(id,title,year,poster_url,movie_info){
+    removeLiElementById(id);
     var ul = document.getElementById("movieSearch"); 
     var li = document.createElement("li");
     li.setAttribute("id",id)
@@ -79,7 +80,7 @@ async function trackSearchChanges(searchedItem) {
             coll[i].addEventListener("click", function() {
                 console.log("activated event")
                 this.classList.toggle("active");
-                var content = this.nextElementSibling.nextElementSibling;
+                var content = this.nextElementSibling;
                 console.log(content);
                 if (content.style.maxHeight){
                 content.style.maxHeight = null;
