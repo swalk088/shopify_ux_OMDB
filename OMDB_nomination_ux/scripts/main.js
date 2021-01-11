@@ -1,21 +1,15 @@
 var nominatedMovies=[];
 var current_searched_list=[];
-var searcheList=[];
 
 async function getOMDBApiCall(searchedItem){
     currentlySearching=true;
-    var ul = document.getElementById("movieSearch"); 
-
-    while (ul.firstChild) {
-        ul.removeChild(ul.lastChild);
-    }
-
+    
     console.log(searchedItem);
     var response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem);
     console.log(response);
     current_searched_list=response.Search;
     
-    
+    removeAllList();
     console.log(current_searched_list);
     if (current_searched_list!==undefined){
         for(var i=0;i<current_searched_list.length;i++){
@@ -23,28 +17,51 @@ async function getOMDBApiCall(searchedItem){
                 //console.log(current_searched_list[i]);
                 var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&t="+current_searched_list[i].Title)
                 console.log(title_response);
-                var li = document.createElement("li");
-                li.setAttribute("id",current_searched_list[i].imdbID)
-                console.log(current_searched_list[i].Title)
-                var innerHTML="<button onclick='nominateMovie()'>Nominate</button><button type='button' class='collapsible'><img src='"+current_searched_list[i].Poster+"' width=50/> "+current_searched_list[i].Title+" ("+current_searched_list[i].Year+")</button>"
-                innerHTML+="<div class='content'>"
-                innerHTML+="<p>Rated: "+title_response.Rated+"</p>"
-                innerHTML+="<p>Release: "+title_response.Release+"</p>"
-                innerHTML+="<p>Genre: "+title_response.Genre+"</p>"
-                innerHTML+="<p>Director: "+title_response.Director+"</p>"
-                innerHTML+="<p>Writer: "+title_response.Writer+"</p>"
-                innerHTML+="<p>Actors: "+title_response.Actors+"</p>"
-                innerHTML+="<p>"+title_response.Plot+"</p>"
-                innerHTML+="</div>";
-                console.log(innerHTML);
-                li.innerHTML=innerHTML;
-                ul.appendChild(li);
+                loadListItem(current_searched_list[i].imdbID,
+                    current_searched_list[i].Title,current_searched_list[i].Year,
+                    current_searched_list[i].Poster,title_response);
+        
+                console.log();
+
             }
         }
     }
 
 }
 
+function loadListItem(id,title,year,poster_url,movie_info){
+    removeLiElementById(id);
+    var ul = document.getElementById("movieSearch"); 
+    var li = document.createElement("li");
+    li.setAttribute("id",id)
+    console.log(title)
+    var innerHTML="<button onclick='nominateMovie()'>Nominate</button><button type='button' class='collapsible'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
+    innerHTML+="<div class='content'>"
+    innerHTML+="<p>Rated: "+movie_info.Rated+"</p>"
+    innerHTML+="<p>Release: "+movie_info.Released+"</p>"
+    innerHTML+="<p>Genre: "+movie_info.Genre+"</p>"
+    innerHTML+="<p>Director: "+movie_info.Director+"</p>"
+    innerHTML+="<p>Writer: "+movie_info.Writer+"</p>"
+    innerHTML+="<p>Actors: "+movie_info.Actors+"</p>"
+    innerHTML+="<p>"+movie_info.Plot+"</p>"
+    innerHTML+="</div>";
+    console.log(innerHTML);
+    li.innerHTML=innerHTML;
+    ul.appendChild(li);
+}
+function removeAllList(){
+    var ul = document.getElementById("movieSearch");
+
+    while (ul.firstChild) {
+        ul.removeChild(ul.lastChild);
+    }
+    console.log("removed all")
+}
+function removeLiElementById(elementId){
+    var elem = document.getElementById(elementId);
+    elem.parentNode.removeChild(elem);
+    console.log(elementId);
+}
 
 async function trackSearchChanges(searchedItem) {
     // Declare variables
