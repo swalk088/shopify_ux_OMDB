@@ -15,7 +15,7 @@ function getOMDBApiCall(searchedItem){
             var li = document.createElement("li");
             li.setAttribute("id",current_searched_list[i].imdbID)
             console.log(current_searched_list[i].Title)
-            li.appendChild(document.createTextNode(current_searched_list[i].Title));
+            li.innerHTML="<img src='"+current_searched_list[i].Poster+"'/> "+current_searched_list[i].Title+" ("+current_searched_list[i].Year+")     <button>Nominate</button>";
             console.log(li);
             ul.appendChild(li);
         }
