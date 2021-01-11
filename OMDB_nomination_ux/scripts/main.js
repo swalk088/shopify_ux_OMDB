@@ -5,7 +5,8 @@ function getOMDBApiCall(searchedItem){
         //console.log(response);
         current_searched_list=response.Search;
         var ul = document.getElementById("movieSearch");
-        for(var i=0;i<current_searched_list;i++){
+        console.log(ul);
+        for(var i=0;i<current_searched_list.length;i++){
             console.log(current_searched_list[i]);
             var li = document.createElement("li");
             li.setAttribute("id",current_searched_list[i].imdbID)
