@@ -2,6 +2,8 @@ var nominatedMovies=[];
 var current_searched_list=[];
 
 var currentSearch="";
+
+
 async function getOMDBApiCall(searchedItem){
     
     console.log(searchedItem);
@@ -45,7 +47,6 @@ function loadListItem(id,title,year,poster_url,movie_info){
     li.innerHTML=innerHTML;
 
     ul.appendChild(li);
-    setCollapsibleOnclick();
     
 }
 function removeAllList(){
@@ -58,12 +59,12 @@ function removeAllList(){
 }
 
 
-function trackSearchChanges() {
+async function trackSearchChanges() {
     var searchedItem = document.getElementById("searchedItem").value;
     if(searchedItem.trim()!==currentSearch){
         currentSearch=searchedItem;
         console.log(searchedItem);
-        getOMDBApiCall(searchedItem);
+        await getOMDBApiCall(searchedItem);
         setCollapsibleOnclick();
     }
        
@@ -78,18 +79,14 @@ function setCollapsibleOnclick(){
     var i;
     
     for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        console.log(content);
-        console.log(content.style.display);
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-        console.log("trying to d other right thing");
-        console.log(content.style.display);
-      });
-    }
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight){
+            content.style.maxHeight = null;
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+          } 
+        });
+      }
 }
