@@ -44,11 +44,11 @@ async function getOMDBApiCall(searchedItem){
 }
 
 
-function trackSearchChanges(searchedItem) {
+async function trackSearchChanges(searchedItem) {
     // Declare variables
-    if (!currentlySearching){
+    // if (!currentlySearching){
         console.log(searchedItem);
-        getOMDBApiCall(searchedItem);
+        await getOMDBApiCall(searchedItem);
 
         var coll = document.getElementsByClassName("collapsible");
         var i;
@@ -66,7 +66,7 @@ function trackSearchChanges(searchedItem) {
                 }
             });
         }
-    }
+    // }
 }
 
 function nominateMovie(nominatedMovieInfo){
