@@ -81,6 +81,7 @@ function setCollapsibleOnclick(){
       coll[i].addEventListener("click", function() {
         this.classList.toggle("active");
         var content = this.nextElementSibling;
+        console.log(content);
         console.log(content.style.display);
         if (content.style.display === "block") {
           content.style.display = "none";
