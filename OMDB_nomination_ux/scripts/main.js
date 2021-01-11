@@ -65,11 +65,11 @@ function checkElementDoesntExist(elementId){
     }
 }
 
-async function trackSearchChanges() {
+function trackSearchChanges() {
     var searchedItem = document.getElementById("searchedItem").value;
     console.log(searchedItem);
     
-    await getOMDBApiCall(searchedItem);
+    getOMDBApiCall(searchedItem);
 
        
 }
