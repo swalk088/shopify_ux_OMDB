@@ -33,10 +33,7 @@
                 <h1>The Shoppies</h1>
             </div>
 
-            <!-- Presenting the staff with cards: https://www.w3schools.com/bootstrap4/bootstrap_cards.asp -->
-            <!-- Card columns allows multiple cards next to each other -->
-            <!-- The first card's button doesn't go anywhere, it could be a modal -->
-            <!-- My second card limits the information seen and uses collapsible to show more -->
+
             <div class="wrap" id=searchItems>
                 <div class= "search">
                     <input type="text" id="searchedItem"class="searchTerm" name="searchItem" placeholder="Enter Movie Title..." onkeyup="trackSearchChanges(searchedItem.value)">
@@ -44,19 +41,19 @@
             </div>
         </div>
         <div>
-            <div id="searchedList">
-            <ul id="movieSearch"></ul>
-            </ul>
+            <div>
+                <div id="searchedList">
+                <ul id="movieSearch"></ul>
+                </ul>
+            </div>
+            <div id="nominatedMovies">
+                
+            </div>
         </div>
-        <div id="nominatedMovies">
-            
-        </div>
-
-        </div>
-        <script src="scripts/main.js "></script>
-        <footer>
-            <p>Website designed by Simon Walker</p> 
-        </footer>
+            <script src="scripts/main.js "></script>
+            <footer>
+                <p>Website designed by Simon Walker</p> 
+            </footer>
     </div>
 </body>
 
