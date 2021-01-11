@@ -2,13 +2,14 @@ function getOMDBApiCall(searchedItem){
     var current_searched_list=[];
     console.log(searchedItem)
     $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem).then(function(response){
-        console.log(response);
+        //console.log(response);
         current_searched_list=response.Search;
         var ul = document.getElementById("movieSearch");
         for(var i=0;i<current_searched_list;i++){
             console.log(current_searched_list[i]);
             var li = document.createElement("li");
             li.setAttribute("id",current_searched_list[i].imdbID)
+            console.log(current_searched_list[i].Title)
             li.appendChild(document.createTextNode(current_searched_list[i].Title));
             console.log(li);
             ul.appendChild(li);
