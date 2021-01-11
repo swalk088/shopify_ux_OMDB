@@ -4,7 +4,11 @@ function getOMDBApiCall(searchedItem){
     $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem).then(function(response){
         //console.log(response);
         current_searched_list=response.Search;
-        var ul = document.getElementById("movieSearch");
+        var ul = document.getElementById("movieSearch");        
+        while (ul.firstChild) {
+            ul.removeChild(ul.lastChild);
+        }
+        
         console.log(ul);
         for(var i=0;i<current_searched_list.length;i++){
             console.log(current_searched_list[i]);
