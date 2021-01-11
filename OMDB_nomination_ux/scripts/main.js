@@ -37,7 +37,11 @@ async function getOMDBApiCall(searchedItem){
             innerHTML+="</div>";
             console.log(innerHTML);
             li.innerHTML=innerHTML;
-            ul.appendChild(li);
+            console.log(document.getElementById(current_searched_list[i].imdbID));
+            if(document.getElementById(current_searched_list[i].imdbID)==undefinded) 
+            {
+                ul.appendChild(li);
+            }
         }
     }
 
