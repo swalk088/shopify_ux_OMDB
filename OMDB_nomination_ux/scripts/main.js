@@ -1,6 +1,7 @@
 var nominatedMovies=[];
 var current_searched_list=[];
 
+var currentSearch="";
 async function getOMDBApiCall(searchedItem){
     
     console.log(searchedItem);
@@ -67,10 +68,11 @@ function checkElementDoesntExist(elementId){
 
 function trackSearchChanges() {
     var searchedItem = document.getElementById("searchedItem").value;
-    console.log(searchedItem);
-    
-    getOMDBApiCall(searchedItem);
-
+    if(searchedItem!==currentSearch){
+        currentSearch=searchedItem;
+        console.log(searchedItem);
+        getOMDBApiCall(searchedItem);
+    }
        
 }
 
