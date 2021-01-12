@@ -35,14 +35,14 @@ function loadListItem(id,title,year,poster_url,movie_info){
     li.setAttribute("id",id)
     console.log(title)
     var innerHTML="<button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button><button type='button' class='collapsible'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
-    innerHTML+="<div class='content'>"
-    innerHTML+="<p>Rated: "+movie_info.Rated+"</p>"
-    innerHTML+="<p>Release: "+movie_info.Released+"</p>"-=
-    innerHTML+="<p>Genre: "+movie_info.Genre+"</p>"
-    innerHTML+="<p>Director: "+movie_info.Director+"</p>"
-    innerHTML+="<p>Writer: "+movie_info.Writer+"</p>"
-    innerHTML+="<p>Actors: "+movie_info.Actors+"</p>"
-    innerHTML+="<p>"+movie_info.Plot+"</p>"
+    innerHTML+="<div class='content'>";
+    innerHTML+="<p>Rated: "+movie_info.Rated+"</p>";
+    innerHTML+="<p>Release: "+movie_info.Released+"</p>";
+    innerHTML+="<p>Genre: "+movie_info.Genre+"</p>";
+    innerHTML+="<p>Director: "+movie_info.Director+"</p>";
+    innerHTML+="<p>Writer: "+movie_info.Writer+"</p>";
+    innerHTML+="<p>Actors: "+movie_info.Actors+"</p>";
+    innerHTML+="<p>"+movie_info.Plot+"</p>";
     innerHTML+="</div>";
     li.innerHTML=innerHTML;
 
