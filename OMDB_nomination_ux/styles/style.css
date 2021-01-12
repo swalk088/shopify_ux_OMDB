@@ -10,12 +10,40 @@
     font-family: "Times New Roman", Times, serif;
     text-shadow: 3px 3px 1px black;
 } */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+
+}
+
+#bg {
+  position:fixed; 
+  top:-50%; 
+  left:-50%; 
+  width:200%; 
+  height:200%;
+}
+#bg img {
+  position:absolute; 
+  top:0; 
+  left:0; 
+  right:0; 
+  bottom:0; 
+  margin:auto; 
+  min-width:50%;
+  min-height:50%;
+}
+
 
 #page-container {
   position: relative;
   min-height: 100vh;
-  background-image: url("https://swalk088.github.io/shopify_ux_OMDB.github.io/OMDB_nomination_ux/images/film_strips_background.jpg");
+  background-color: white;
+  z-index:1;
+
   
+
 }
 
 #navBar {
