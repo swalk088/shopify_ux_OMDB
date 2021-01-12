@@ -34,10 +34,10 @@ function loadListItem(id,title,year,poster_url,movie_info){
     var li = document.createElement("li");
     li.setAttribute("id",id)
     console.log(title)
-    var innerHTML="<button onclick='nominateMovie("+id+","+title+","+year+","+poster_url+","+movie_info+")'>Nominate</button><button type='button' class='collapsible'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
+    var innerHTML="<button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button><button type='button' class='collapsible'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
     innerHTML+="<div class='content'>"
     innerHTML+="<p>Rated: "+movie_info.Rated+"</p>"
-    innerHTML+="<p>Release: "+movie_info.Released+"</p>"
+    innerHTML+="<p>Release: "+movie_info.Released+"</p>"-=
     innerHTML+="<p>Genre: "+movie_info.Genre+"</p>"
     innerHTML+="<p>Director: "+movie_info.Director+"</p>"
     innerHTML+="<p>Writer: "+movie_info.Writer+"</p>"
@@ -70,8 +70,8 @@ async function trackSearchChanges() {
        
 }
 
-function nominateMovie(id,title,year,poster_url,movie_info){
-    console.log(id,title,year,poster_url,movie_info);
+function nominateMovie(id,title,year,poster_url){
+    console.log(id,title,year,poster_url);
     console.log("Nominate movie");
 }
 
