@@ -34,7 +34,7 @@ function loadListItem(id,title,year,poster_url,movie_info){
     var li = document.createElement("li");
     li.setAttribute("id",id)
     console.log(title)
-    var innerHTML="<button onclick='nominateMovie()'>Nominate</button><button type='button' class='collapsible'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
+    var innerHTML="<button onclick='nominateMovie([\"one\",\"two\"])'>Nominate</button><button type='button' class='collapsible'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
     innerHTML+="<div class='content'>"
     innerHTML+="<p>Rated: "+movie_info.Rated+"</p>"
     innerHTML+="<p>Release: "+movie_info.Released+"</p>"
@@ -70,7 +70,8 @@ async function trackSearchChanges() {
        
 }
 
-function nominateMovie(){
+function nominateMovie(stuff){
+    console.log(stuff);
     console.log("Nominate movie");
 }
 
