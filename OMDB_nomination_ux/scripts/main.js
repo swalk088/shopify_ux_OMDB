@@ -17,7 +17,7 @@ function setModalMovie(id){
             document.getElementById("movieWriter").innerHTML=data.movieInfo.Writer;
             document.getElementById("movieActors").innerHTML=data.movieInfo.Actors;
             document.getElementById("moviePlot").innerHTML=data.movieInfo.Plot;
-            document.getElementById("nominateMovieBtn").onclick=nominateMovie(id,data.Title,data.Year,data.Poster);
+            document.getElementById("nominateMovieBtn").onclick="nominateMovie("+id+","+data.Title+","+data.Year+","+data.Poster+")";
         }
     });
     console.log("changed modal");
@@ -53,7 +53,8 @@ function loadListItem(id,title,year,poster_url,movie_info){
     var li = document.createElement("li");
     li.setAttribute("id",id)
     console.log(title)
-    var innerHTML="<button type='button' class='modalTrigger' data-toggle='modal' data-target='#myModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button><button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button>"
+    //<button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button>
+    var innerHTML="<button type='button' class='modalTrigger' data-toggle='modal' data-target='#movieModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
     
     li.innerHTML=innerHTML;
 
