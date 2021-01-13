@@ -53,7 +53,7 @@ function loadListItem(id,title,year,poster_url,movie_info){
     var li = document.createElement("li");
     li.setAttribute("id",id)
     console.log(title)
-    var innerHTML="<button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button><button type='button' class='modalTrigger' data-toggle='modal' data-target='#myModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
+    var innerHTML="<button type='button' class='modalTrigger' data-toggle='modal' data-target='#myModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button><button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button>"
     
     li.innerHTML=innerHTML;
 
@@ -83,7 +83,7 @@ async function trackSearchChanges() {
 
 function nominateMovie(id,title,year,poster_url){
     console.log(id,title,year,poster_url);
-    nominateMovie.push(id,title,year,poster_url);
+    nominatedMovies.push(id,title,year,poster_url);
     addMovieNominated(id,title,year,poster_url);
     console.log("Nominate movie");
 }
@@ -105,7 +105,7 @@ function setCollapsibleOnclick(){
       }
 }
 
-function addMovieNominated(){
+function addMovieNominated(id,title,year,poster_url){
     var ul = document.getElementById("nominationList"); 
     var li = document.createElement("li");
     li.setAttribute("id",id)
