@@ -1,11 +1,30 @@
 var nominatedMovies=[];
+var currentSearch="";
 var current_searched_list=[];
 
-var currentSearch="";
 
+function setModalMovie(id){
+    console.log(id);
+    current_searched_list.forEach(function(data){
+        if(data.imdbID==id){
+            console.log("found movie");
+            document.getElementById("movieTitle").innerHTML=data.Title;
+            document.getElementById("moviePoster").src=data.Poster;
+            document.getElementById("movieRating").innerHTML=data.movieInfo.Rated;
+            document.getElementById("movieRelease").innerHTML=data.movieInfo.Released;
+            document.getElementById("movieGenre").innerHTML=data.movieInfo.Genre;
+            document.getElementById("movieDirector").innerHTML=data.movieInfo.Director;
+            document.getElementById("movieWriter").innerHTML=data.movieInfo.Writer;
+            document.getElementById("movieActors").innerHTML=data.movieInfo.Actors;
+            document.getElementById("moviePlot").innerHTML=data.movieInfo.Plot;
+            document.getElementById("nominateMovieBtn").onclick=nominateMovie(id,data.Title,data.Year,data.Poster);
+        }
+    });
+    console.log("changed modal");
+}
 
 async function getOMDBApiCall(searchedItem){
-    
+
     console.log(searchedItem);
     var response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem);
     console.log(response);
@@ -21,7 +40,7 @@ async function getOMDBApiCall(searchedItem){
                 loadListItem(current_searched_list[i].imdbID,
                     current_searched_list[i].Title,current_searched_list[i].Year,
                     current_searched_list[i].Poster,title_response);
-        
+                current_searched_list[i].movieInfo=title_response;
 
             }
         }
@@ -34,16 +53,8 @@ function loadListItem(id,title,year,poster_url,movie_info){
     var li = document.createElement("li");
     li.setAttribute("id",id)
     console.log(title)
-    var innerHTML="<button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button><button type='button' class='collapsible'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
-    innerHTML+="<div class='content'>"
-    innerHTML+="<p>Rated: "+movie_info.Rated+"</p>"
-    innerHTML+="<p>Release: "+movie_info.Released+"</p>"
-    innerHTML+="<p>Genre: "+movie_info.Genre+"</p>"
-    innerHTML+="<p>Director: "+movie_info.Director+"</p>"
-    innerHTML+="<p>Writer: "+movie_info.Writer+"</p>"
-    innerHTML+="<p>Actors: "+movie_info.Actors+"</p>"
-    innerHTML+="<p>"+movie_info.Plot+"</p>"
-    innerHTML+="</div>";
+    var innerHTML="<button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button><button type='button' class='modalTrigger' data-toggle='modal' data-target='#myModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
+    
     li.innerHTML=innerHTML;
 
     ul.appendChild(li);
@@ -72,6 +83,8 @@ async function trackSearchChanges() {
 
 function nominateMovie(id,title,year,poster_url){
     console.log(id,title,year,poster_url);
+    nominateMovie.push(id,title,year,poster_url);
+    addMovieNominated(id,title,year,poster_url);
     console.log("Nominate movie");
 }
 
@@ -90,4 +103,18 @@ function setCollapsibleOnclick(){
           } 
         });
       }
+}
+
+function addMovieNominated(){
+    var ul = document.getElementById("nominationList"); 
+    var li = document.createElement("li");
+    li.setAttribute("id",id)
+    console.log(title)
+    var innerHTML="<img src='"+poster_url+"' width=50/> "+title+" ("+year+")"
+    li.innerHTML=innerHTML;
+
+    ul.appendChild(li);
+}
+function removeMovieNominated(){
+
 }
