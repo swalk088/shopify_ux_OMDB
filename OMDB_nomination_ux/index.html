@@ -47,41 +47,37 @@
 
                     <ul id="nominationList">No Nominated Movies</ul>
                 </div>
-                
             </div>
         </div>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="movieModal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="movieTitle"></h4>
-                        <img src="" alt="Movie Poster" id="moviePoster">
-                    </div>
-                    <div class="modal-body" id="movieInfo">
-                        <p id="movieRating"></p>
-                        <p id="movieRelease"></p>
-                        <p id="movieGenre"></p>
-                        <p id="movieDirector"></p>
-                        <p id="movieWriter"></p>
-                        <p id="movieActors"></p>
-                        <p id="moviePlot"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="nominateMovieBtn" type="button" class="btn btn-default" data-dismiss="modal">Nominate</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
     </div>
     
 <script src="scripts/main.js "></script>
-
+<!-- Modals -->
+<div class="modal fade" id="movieModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="" alt="Movie Poster" id="moviePoster" class="poster">
+                <h2 class="modal-title" id="movieTitle"></h2>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+            </div>
+            <div class="modal-body" id="movieInfo">
+                <p id="movieRating"></p>
+                <p id="movieRelease"></p>
+                <p id="movieGenre"></p>
+                <p id="movieDirector"></p>
+                <p id="movieWriter"></p>
+                <p id="movieActors"></p>
+                <p id="moviePlot"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="nominateMovieBtn" type="button" class="nominateBtn" data-dismiss="modal">Nominate</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 <footer>
