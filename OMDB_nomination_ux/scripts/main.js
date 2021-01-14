@@ -112,14 +112,16 @@ function addMovieNominated(id,title,year,poster_url){
     var ul = document.getElementById("nominationList"); 
     var li = document.createElement("li");
     li.setAttribute("id","nominationID"+id);
-    console.log(title)
+    console.log(title);
+    console.log(id);
     var innerHTML="<img src='"+poster_url+"' width=50/> "+title+" ("+year+") <button type=\"button\" class=\"close\" onclick=\"removeNomination("+id+")\">&times;</button>"
     li.innerHTML=innerHTML;
-
+    console.log(li)
     ul.appendChild(li);
 }
 function removeNomination(id){
-    $('#nominationID'+id).remove();
+    var elem = document.getElementById("nominationID"+id);
+    elem.parentNode.removeChild(elem);
     var i=0;
     for(i=0;i<nominatedMovies.length;i++){
         if(nominatedMovies[i][0]==id){
