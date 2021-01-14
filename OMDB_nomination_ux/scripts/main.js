@@ -189,7 +189,7 @@ function checkCookies(){
     var decodedCookie = decodeURIComponent(document.cookie);
     if(decodedCookie.indexOf("nominatedList")!==0){
         console.log(decodedCookie);
-        if(decodedCookie.replace("nominatedList")!==""){
+        if(decodedCookie.replace("nominatedList=")!==""){
             console.log(decodedCookie.replace("nominatedList"));
             setNominationList(decodedCookie.replace("nominatedList=","").replaceAll("\"","").split(","));
         }
