@@ -91,6 +91,10 @@ height: 2.5rem;            /* Footer height */
   background-color: #eee; /* Add a hover effect to all links, except for headers */
 }
 
+ul {
+  list-style-type: none;
+}
+
 
 .nominateBtn{
   border: 3px solid #00B4CC;
