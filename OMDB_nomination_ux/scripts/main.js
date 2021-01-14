@@ -195,18 +195,20 @@ function checkCookies(){
 }
 
 async function setNominationList(ids){
-    console.log(ids);
-    var i=0;
-    for(i=0;i<ids.length;i++){
-        var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&i="+ids[i]);
-        console.log(title_response);
-        nominatedMovies.push([ids[i],title_response.Title,title_response.Year,title_response.Poster]);
-        addMovieNominated(ids[i],title_response.Title,title_response.Year,title_response.Poster);
-    }
-    console.log(nominatedMovies);
-    var nominatedMovieIds=[];
-    nominatedMovies.forEach(function(data){
-       nominatedMovieIds.push(data[0]) ;
-    });
-    document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
+    if(ids.length>0){
+        console.log(ids);
+        var i=0;
+        for(i=0;i<ids.length;i++){
+            var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&i="+ids[i]);
+            console.log(title_response);
+            nominatedMovies.push([ids[i],title_response.Title,title_response.Year,title_response.Poster]);
+            addMovieNominated(ids[i],title_response.Title,title_response.Year,title_response.Poster);
+        }
+        console.log(nominatedMovies);
+        var nominatedMovieIds=[];
+        nominatedMovies.forEach(function(data){
+           nominatedMovieIds.push(data[0]) ;
+        });
+        document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
+        }
 }
