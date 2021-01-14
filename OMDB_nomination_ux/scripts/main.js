@@ -110,10 +110,12 @@ async function trackSearchChanges() {
 }
 
 function nominateMovie(id,title,year,poster_url){
-    var nominateBtn = document.getElementById(id).childNodes; 
+    var nominateBtn = document.getElementById(id).childNodes[1]; 
     console.log(nominateBtn);
-    // nominateBtn.setAttribute('disabled','disabled');
-    // nominateBtn.innerText="Already Nominated";
+    if(nominateBtn!==null){
+        nominateBtn.setAttribute('disabled','disabled');
+        nominateBtn.innerText="Already Nominated";
+    }
     console.log(id,title,year,poster_url);
     $('#movieModal').modal('hide');
     nominatedMovies.push([id,title,year,poster_url]);
@@ -162,5 +164,11 @@ function removeNomination(id){
     }
     if(nominatedMovies.length==0){
         document.getElementById("noNominatedMovies").innerText="No Nominated Movies";
+    }
+    var nominateBtn = document.getElementById(id).childNodes[1];
+    if(nominateBtn!==null){
+        console.log(nominateBtn);
+        nominateBtn.setAttribute('disabled',false);
+        nominateBtn.innerText="Nominate";
     }
 }
