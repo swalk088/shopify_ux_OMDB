@@ -190,6 +190,7 @@ function checkCookies(){
     if(decodedCookie.indexOf("nominatedList")!==0){
         console.log(decodedCookie);
         if(decodedCookie.replace("nominatedList")!==""){
+            console.log(decodedCookie.replace("nominatedList"));
             setNominationList(decodedCookie.replace("nominatedList=","").replaceAll("\"","").split(","));
         }
 
