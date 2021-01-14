@@ -6,6 +6,7 @@ var current_searched_list=[];
 function setModalMovie(id){
     console.log(id);
     current_searched_list.forEach(function(data){
+        console.log(data);
         if(data.imdbID==id){
             var notNominated=true;
             nominatedMovies.forEach(function(nominatedData){
@@ -14,23 +15,24 @@ function setModalMovie(id){
                 }
             });
             if(notNominated){
-                console.log("found movie");
-                document.getElementById("movieTitle").innerHTML=data.Title;
-                document.getElementById("moviePoster").src=data.Poster;
-                document.getElementById("movieRating").innerHTML="Rated: "+data.movieInfo.Rated;
-                document.getElementById("movieRelease").innerHTML="Release Date: "+data.movieInfo.Released;
-                document.getElementById("movieGenre").innerHTML="Genre(s): "+data.movieInfo.Genre;
-                document.getElementById("movieDirector").innerHTML="Director: "+data.movieInfo.Director;
-                document.getElementById("movieWriter").innerHTML="Writer(s): "+data.movieInfo.Writer;
-                document.getElementById("movieActors").innerHTML="Actors: "+data.movieInfo.Actors;
-                document.getElementById("moviePlot").innerHTML=data.movieInfo.Plot;
+                
                 var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
-                   modalNominateBtn.disabled =false;
+                modalNominateBtn.disabled =false;
                 modalNominateBtn.onclick=function(){nominateMovie(id,data.Title,data.Year,data.Poster)};
             }else{
                 var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
-                   modalNominateBtn.disabled =true;
+                modalNominateBtn.disabled =true;
             }
+            console.log("found movie");
+            document.getElementById("movieTitle").innerHTML=data.Title;
+            document.getElementById("moviePoster").src=data.Poster;
+            document.getElementById("movieRating").innerHTML="Rated: "+data.movieInfo.Rated;
+            document.getElementById("movieRelease").innerHTML="Release Date: "+data.movieInfo.Released;
+            document.getElementById("movieGenre").innerHTML="Genre(s): "+data.movieInfo.Genre;
+            document.getElementById("movieDirector").innerHTML="Director: "+data.movieInfo.Director;
+            document.getElementById("movieWriter").innerHTML="Writer(s): "+data.movieInfo.Writer;
+            document.getElementById("movieActors").innerHTML="Actors: "+data.movieInfo.Actors;
+            document.getElementById("moviePlot").innerHTML=data.movieInfo.Plot;
         }
     });
     console.log(document.getElementById("modalNominateMovieBtn"));
