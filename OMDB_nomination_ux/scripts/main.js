@@ -182,12 +182,13 @@ function checkCookies(){
     }
 }
 
-function setNominationList(ids){
+async function setNominationList(ids){
     console.log(ids);
-    ids.forEach(async function(data){
-        var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&i="+data);
+    var i=0;
+    for(i=0;i<ids.length;i++){
+        var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&i="+ids[i]);
         console.log(title_response);
-        nominatedMovies.push([data,title_response.Title,title_response.Year,title_response.Poster]);
-    });
+        nominatedMovies.push([ids[i],title_response.Title,title_response.Year,title_response.Poster]);
+    }
     console.log(nominatedMovies);
 }
