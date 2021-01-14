@@ -114,20 +114,26 @@ function addMovieNominated(id,title,year,poster_url){
     li.setAttribute("id","nominationID"+id);
     console.log(title);
     console.log(id);
-    var innerHTML="<img src='"+poster_url+"' width=50/> "+title+" ("+year+") <button type=\"button\" class=\"close\" onclick=\"removeNomination("+id+")\">&times;</button>"
+    var innerHTML="<img src='"+poster_url+"' width=50/> "+title+" ("+year+") <button type=\"button\" class=\"close\" onclick=\"removeNomination('ID"+id+"')\">&times;</button>"
     li.innerHTML=innerHTML;
     console.log(li)
+    document.getElementById("noNominatedMovies").innerText="";
     ul.appendChild(li);
 }
 function removeNomination(id){
-    var elem = document.getElementById("nominationID"+id);
+    console.log(id);
+    var elem = document.getElementById("nomination"+id);
     elem.parentNode.removeChild(elem);
     var i=0;
     for(i=0;i<nominatedMovies.length;i++){
         if(nominatedMovies[i][0]==id){
             console.log(nominatedMovies[i]);
             nominatedMovies.splice(i, 1);
-            return
+            
         }
+        
+    }
+    if(nominatedMovies.length==0){
+        document.getElementById("noNominatedMovies").innerText="No Nominated Movies";
     }
 }
