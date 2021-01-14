@@ -177,7 +177,12 @@ function removeNomination(id){
     nominatedMovies.forEach(function(data){
        nominatedMovieIds.push(data[0]) ;
     });
-    document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
+    if(nominatedMovieIds.length!==0){
+        document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
+    }else{
+        document.cookie="\"nominatedList="+nominatedMovieIds+"; expires=Thu, 01 Jan 1970 00:00:00 UTC;\"";
+
+    }
 }
 
 function checkCookies(){
