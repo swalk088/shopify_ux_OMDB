@@ -7,20 +7,35 @@ function setModalMovie(id){
     console.log(id);
     current_searched_list.forEach(function(data){
         if(data.imdbID==id){
-            console.log("found movie");
-            document.getElementById("movieTitle").innerHTML=data.Title;
-            document.getElementById("moviePoster").src=data.Poster;
-            document.getElementById("movieRating").innerHTML=data.movieInfo.Rated;
-            document.getElementById("movieRelease").innerHTML=data.movieInfo.Released;
-            document.getElementById("movieGenre").innerHTML=data.movieInfo.Genre;
-            document.getElementById("movieDirector").innerHTML=data.movieInfo.Director;
-            document.getElementById("movieWriter").innerHTML=data.movieInfo.Writer;
-            document.getElementById("movieActors").innerHTML=data.movieInfo.Actors;
-            document.getElementById("moviePlot").innerHTML=data.movieInfo.Plot;
-            document.getElementById("nominateMovieBtn").onclick=function(){nominateMovie(id,data.Title,data.Year,data.Poster)};
+            var notNominated=true;
+            nominatedMovies.forEach(function(nominatedData){
+                if(nominatedData[0]==data.imdbID){
+                    notNominated=false;
+                }
+            });
+            if(notNominated){
+                console.log("found movie");
+                document.getElementById("movieTitle").innerHTML=data.Title;
+                document.getElementById("moviePoster").src=data.Poster;
+                document.getElementById("movieRating").innerHTML=data.movieInfo.Rated;
+                document.getElementById("movieRelease").innerHTML=data.movieInfo.Released;
+                document.getElementById("movieGenre").innerHTML=data.movieInfo.Genre;
+                document.getElementById("movieDirector").innerHTML=data.movieInfo.Director;
+                document.getElementById("movieWriter").innerHTML=data.movieInfo.Writer;
+                document.getElementById("movieActors").innerHTML=data.movieInfo.Actors;
+                document.getElementById("moviePlot").innerHTML=data.movieInfo.Plot;
+                var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
+                modalNominateBtn.setAttribute('disabled',false);
+                modalNominateBtn.innerText="Nominate";
+                modalNominateBtn.onclick=function(){nominateMovie(id,data.Title,data.Year,data.Poster)};
+            }else{
+                var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
+                modalNominateBtn.setAttribute('disabled','disabled');
+                modalNominateBtn.innerText="Already Nominated";
+            }
         }
     });
-    console.log(document.getElementById("nominateMovieBtn"));
+    console.log(document.getElementById("modalNominateMovieBtn"));
     console.log("changed modal");
 }
 
@@ -54,9 +69,20 @@ function loadListItem(id,title,year,poster_url,movie_info){
     var li = document.createElement("li");
     li.setAttribute("id",id)
     console.log(title)
-    //<button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button>
-    var innerHTML="<button type='button' class='modalTrigger' data-toggle='modal' data-target='#movieModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")</button>"
-    
+    var notNominated=true;
+    nominatedMovies.forEach(function(nominatedData){
+        if(nominatedData[0]==id){
+            notNominated=false;
+        }
+    });
+
+    if(notNominated){
+        //<button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button>
+        var innerHTML="<button type='button' class='modalTrigger' data-toggle='modal' data-target='#movieModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")  <button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button></button>"
+    }else{
+        var innerHTML="<button type='button' class='modalTrigger' data-toggle='modal' data-target='#movieModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")  <button disable onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Already Nominated</button></button>"
+
+    }
     li.innerHTML=innerHTML;
 
     ul.appendChild(li);
@@ -84,6 +110,10 @@ async function trackSearchChanges() {
 }
 
 function nominateMovie(id,title,year,poster_url){
+    var nominateBtn = document.getElementById(id).childNodes; 
+    console.log(nominateBtn);
+    // nominateBtn.setAttribute('disabled','disabled');
+    // nominateBtn.innerText="Already Nominated";
     console.log(id,title,year,poster_url);
     $('#movieModal').modal('hide');
     nominatedMovies.push([id,title,year,poster_url]);
@@ -121,15 +151,12 @@ function addMovieNominated(id,title,year,poster_url){
     ul.appendChild(li);
 }
 function removeNomination(id){
-    console.log(id);
     var elem = document.getElementById("nomination"+id);
     elem.parentNode.removeChild(elem);
     var i=0;
     for(i=0;i<nominatedMovies.length;i++){
-        if(nominatedMovies[i][0]==id){
-            console.log(nominatedMovies[i]);
+        if(nominatedMovies[i][0]==id.replace("ID","")){
             nominatedMovies.splice(i, 1);
-            
         }
         
     }
