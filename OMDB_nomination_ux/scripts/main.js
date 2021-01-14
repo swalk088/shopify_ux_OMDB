@@ -116,7 +116,7 @@ function nominateMovie(id,title,year,poster_url){
     console.log(id,title,year,poster_url);
     $('#movieModal').modal('hide');
     nominatedMovies.push([id,title,year,poster_url]);
-    document.cookie="\"nominatedList="+nominatedMovies.toString+"\"";
+    document.cookie="\"nominatedList="+nominatedMovies+"\"";
     addMovieNominated(id,title,year,poster_url);
 }
 
