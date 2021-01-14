@@ -26,12 +26,10 @@ function setModalMovie(id){
                 document.getElementById("moviePlot").innerHTML=data.movieInfo.Plot;
                 var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
                    modalNominateBtn.disabled =false;
-                modalNominateBtn.innerText="Nominate";
                 modalNominateBtn.onclick=function(){nominateMovie(id,data.Title,data.Year,data.Poster)};
             }else{
                 var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
                    modalNominateBtn.disabled =true;
-                modalNominateBtn.innerText="Already Nominated";
             }
         }
     });
@@ -42,7 +40,7 @@ function setModalMovie(id){
 async function getOMDBApiCall(searchedItem){
 
     console.log(searchedItem);
-    var response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem);
+    var response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem+"*");
     console.log(response);
     current_searched_list=response.Search;
     
@@ -114,13 +112,12 @@ function nominateMovie(id,title,year,poster_url){
     console.log(nominateBtn);
     if(nominateBtn!==null){
         nominateBtn.disabled =true;
-        nominateBtn.innerText="Already Nominated";
     }
     console.log(id,title,year,poster_url);
     $('#movieModal').modal('hide');
     nominatedMovies.push([id,title,year,poster_url]);
+    document.cookie="\"nominatedList="+nominatedMovies.toString+"\"";
     addMovieNominated(id,title,year,poster_url);
-    console.log("Nominate movie");
 }
 
 function setCollapsibleOnclick(){
@@ -169,6 +166,14 @@ function removeNomination(id){
     if(nominateBtn!==null){
         console.log(nominateBtn);
         nominateBtn.disabled =false;
-        nominateBtn.innerText="Nominate";
+    }
+}
+
+function checkCookies(){
+    var decodedCookie = decodeURIComponent(document.cookie);
+    if(decodedCookie.indexOf("nominatedList")!==0){
+        console.log(decodedCookie);
+        
+
     }
 }
