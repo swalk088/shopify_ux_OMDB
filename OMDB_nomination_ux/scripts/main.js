@@ -30,7 +30,7 @@ function setModalMovie(id){
                 modalNominateBtn.onclick=function(){nominateMovie(id,data.Title,data.Year,data.Poster)};
             }else{
                 var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
-                modalNominateBtn.setAttribute('disabled','disabled');
+                   modalNominateBtn.disabled =true;
                 modalNominateBtn.innerText="Already Nominated";
             }
         }
@@ -113,7 +113,7 @@ function nominateMovie(id,title,year,poster_url){
     var nominateBtn = document.getElementById(id).childNodes[1]; 
     console.log(nominateBtn);
     if(nominateBtn!==null){
-        nominateBtn.setAttribute('disabled','disabled');
+        nominateBtn.disabled =true;
         nominateBtn.innerText="Already Nominated";
     }
     console.log(id,title,year,poster_url);
@@ -165,10 +165,10 @@ function removeNomination(id){
     if(nominatedMovies.length==0){
         document.getElementById("noNominatedMovies").innerText="No Nominated Movies";
     }
-    var nominateBtn = document.getElementById(id).childNodes[1];
+    var nominateBtn = document.getElementById(id.replace("ID","")).childNodes[1];
     if(nominateBtn!==null){
         console.log(nominateBtn);
-        nominateBtn.setAttribute('disabled',false);
+        nominateBtn.disabled =false;
         nominateBtn.innerText="Nominate";
     }
 }
