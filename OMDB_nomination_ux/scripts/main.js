@@ -84,6 +84,7 @@ async function trackSearchChanges() {
 
 function nominateMovie(id,title,year,poster_url){
     console.log(id,title,year,poster_url);
+    $('#movieModal').modal('hide');
     nominatedMovies.push(id,title,year,poster_url);
     addMovieNominated(id,title,year,poster_url);
     console.log("Nominate movie");
