@@ -25,7 +25,7 @@ function setModalMovie(id){
                 document.getElementById("movieActors").innerHTML=data.movieInfo.Actors;
                 document.getElementById("moviePlot").innerHTML=data.movieInfo.Plot;
                 var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
-                modalNominateBtn.setAttribute('disabled',false);
+                   modalNominateBtn.disabled =false;
                 modalNominateBtn.innerText="Nominate";
                 modalNominateBtn.onclick=function(){nominateMovie(id,data.Title,data.Year,data.Poster)};
             }else{
