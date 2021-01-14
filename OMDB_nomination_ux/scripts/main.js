@@ -186,6 +186,7 @@ function setNominationList(ids){
     console.log(ids);
     ids.forEach(async function(data){
         var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&i="+data);
+        console.log(title_response);
         nominatedMovies.push([data,title_response.Title,title_response.Year,title_response.Poster]);
     });
     console.log(nominatedMovies);
