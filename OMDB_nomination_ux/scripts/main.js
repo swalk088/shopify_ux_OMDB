@@ -171,6 +171,11 @@ function removeNomination(id){
         console.log(nominateBtn);
         nominateBtn.disabled =false;
     }
+    var nominatedMovieIds=[];
+    nominatedMovies.forEach(function(data){
+       nominatedMovieIds.push(data[0]) ;
+    });
+    document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
 }
 
 function checkCookies(){
@@ -192,4 +197,9 @@ async function setNominationList(ids){
         addMovieNominated(ids[i],title_response.Title,title_response.Year,title_response.Poster);
     }
     console.log(nominatedMovies);
+    var nominatedMovieIds=[];
+    nominatedMovies.forEach(function(data){
+       nominatedMovieIds.push(data[0]) ;
+    });
+    document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
 }
