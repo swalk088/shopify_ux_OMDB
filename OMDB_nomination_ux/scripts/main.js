@@ -17,12 +17,12 @@ function setModalMovie(id){
                 console.log("found movie");
                 document.getElementById("movieTitle").innerHTML=data.Title;
                 document.getElementById("moviePoster").src=data.Poster;
-                document.getElementById("movieRating").innerHTML=data.movieInfo.Rated;
-                document.getElementById("movieRelease").innerHTML=data.movieInfo.Released;
-                document.getElementById("movieGenre").innerHTML=data.movieInfo.Genre;
-                document.getElementById("movieDirector").innerHTML=data.movieInfo.Director;
-                document.getElementById("movieWriter").innerHTML=data.movieInfo.Writer;
-                document.getElementById("movieActors").innerHTML=data.movieInfo.Actors;
+                document.getElementById("movieRating").innerHTML="Rated: "+data.movieInfo.Rated;
+                document.getElementById("movieRelease").innerHTML="Release Date: "+data.movieInfo.Released;
+                document.getElementById("movieGenre").innerHTML="Genre(s): "+data.movieInfo.Genre;
+                document.getElementById("movieDirector").innerHTML="Director: "+data.movieInfo.Director;
+                document.getElementById("movieWriter").innerHTML="Writer(s): "+data.movieInfo.Writer;
+                document.getElementById("movieActors").innerHTML="Actors: "+data.movieInfo.Actors;
                 document.getElementById("moviePlot").innerHTML=data.movieInfo.Plot;
                 var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
                    modalNominateBtn.disabled =false;
