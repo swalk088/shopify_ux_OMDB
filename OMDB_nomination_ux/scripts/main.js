@@ -181,3 +181,11 @@ function checkCookies(){
 
     }
 }
+
+async function setNominationList(ids){
+    ids.forEach(function(data){
+        var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&i="+data);
+        nominatedMovies.push([id,title_response.Title,title_response.Year,title_response.Poster]);
+    });
+    console.log(nominatedMovies);
+}
