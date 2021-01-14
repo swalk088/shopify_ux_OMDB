@@ -177,12 +177,13 @@ function checkCookies(){
     var decodedCookie = decodeURIComponent(document.cookie);
     if(decodedCookie.indexOf("nominatedList")!==0){
         console.log(decodedCookie);
-        
+        setNominationList(decodedCookie.replace("nominatedList=","").split(","));
 
     }
 }
 
 async function setNominationList(ids){
+    console.log(ids);
     ids.forEach(function(data){
         var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&i="+data);
         nominatedMovies.push([id,title_response.Title,title_response.Year,title_response.Poster]);
