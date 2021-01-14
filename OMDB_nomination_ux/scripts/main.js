@@ -189,7 +189,9 @@ function checkCookies(){
     var decodedCookie = decodeURIComponent(document.cookie);
     if(decodedCookie.indexOf("nominatedList")!==0){
         console.log(decodedCookie);
-        setNominationList(decodedCookie.replace("nominatedList=","").replaceAll("\"","").split(","));
+        if(decodedCookie.replace("nominatedList")!==""){
+            setNominationList(decodedCookie.replace("nominatedList=","").replaceAll("\"","").split(","));
+        }
 
     }
 }
