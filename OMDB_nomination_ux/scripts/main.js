@@ -180,7 +180,7 @@ function removeNomination(id){
     if(nominatedMovieIds.length!==0){
         document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
     }else{
-        document.cookie="\"nominatedList="+nominatedMovieIds+"; expires=Thu, 01 Jan 1970 00:00:00 UTC;\"";
+        document.cookie="\"nominatedList=; expires=Thu, 01 Jan 1970 00:00:00 UTC;\"";
 
     }
 }
