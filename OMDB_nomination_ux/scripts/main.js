@@ -113,7 +113,6 @@ function checkNominations(){
             var nominateBtn = document.getElementById(data.imdbID);
             if(nominateBtn!==null){
                 var nominateBtChild=nominateBtn.childNodes[1]
-                console.log(nominateBtChild);
                 nominateBtChild.disabled =false;
             }
         }else{
