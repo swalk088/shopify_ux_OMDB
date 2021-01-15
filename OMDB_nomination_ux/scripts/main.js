@@ -190,10 +190,22 @@ function addMovieNominated(id,title,year,poster_url){
     console.log(li)
     document.getElementById("noNominatedMovies").innerText="";
     ul.appendChild(li);
+
+    var sub_ul = document.getElementById("submissionsNominationList"); 
+    var sub_li = document.createElement("li");
+    li.setAttribute("id","sub"+id);
+    var subInnerHTML="<img src='"+poster_url+"' width=50/> "+title+" ("+year+") <button type=\"button\" class=\"close\" onclick=\"removeNomination('ID"+id+"')\">&times;</button>"
+    sub_li.innerHTML=subInnerHTML;
+    document.getElementById("noSubNominatedMovies").innerText="";
+    ul.appendChild(li);
+
+
 }
 function removeNomination(id){
     var elem = document.getElementById("nomination"+id);
     elem.parentNode.removeChild(elem);
+    var sub_elem = document.getElementById("sub"+id);
+    sub_elem.parentNode.removeChild(sub_elem);
     var i=0;
     for(i=0;i<nominatedMovies.length;i++){
         if(nominatedMovies[i][0]==id.replace("ID","")){
@@ -203,6 +215,7 @@ function removeNomination(id){
     }
     if(nominatedMovies.length==0){
         document.getElementById("noNominatedMovies").innerText="No Nominated Movies";
+        document.getElementById("noSubNominatedMovies").innerText="No Nominated Movies";
     }
     var nominateBtn = document.getElementById(id.replace("ID",""));
     if(nominateBtn!==null){
