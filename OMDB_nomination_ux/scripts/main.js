@@ -163,7 +163,7 @@ function nominateMovie(id,title,year,poster_url){
     });
     document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
     addMovieNominated(id,title,year,poster_url);
-    checkNominations();
+    
 }
 
 function setCollapsibleOnclick(){
@@ -203,6 +203,7 @@ function addMovieNominated(id,title,year,poster_url){
     document.getElementById("noSubNominatedMovies").innerText="";
     sub_ul.appendChild(sub_li);
 
+    checkNominations();
 
 }
 function removeNomination(id){
