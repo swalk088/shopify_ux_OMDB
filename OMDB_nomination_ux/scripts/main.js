@@ -196,7 +196,6 @@ function addMovieNominated(id,title,year,poster_url){
     sub_li.setAttribute("id","sub"+id);
     var subInnerHTML="<img src='"+poster_url+"' width=50/> "+title+" ("+year+") <button type=\"button\" class=\"close\" onclick=\"removeNomination('ID"+id+"')\">&times;</button>"
     sub_li.innerHTML=subInnerHTML;
-    document.getElementById("noSubNominatedMovies").innerText="";
     sub_ul.appendChild(sub_li);
     console.log(ul);
     console.log(sub_ul);
@@ -204,8 +203,12 @@ function addMovieNominated(id,title,year,poster_url){
     document.getElementById("modalSubmissionBtn").disabled=false;
 
     if(nominatedMovies.length>=5){
-        $("#submitNominationsModal").modal();
-    } 
+        document.getElementById("noNominatedMovies").style.color="red";
+        document.getElementById("noNominatedMovies").innerText="Max number of nominations is 5.";
+    }else{
+        document.getElementById("noNominatedMovies").style.color="black";
+        document.getElementById("noNominatedMovies").innerText="";
+    }
 
 }
 function removeNomination(id){
@@ -225,7 +228,7 @@ function removeNomination(id){
     if(nominatedMovies.length==0){
         document.getElementById("submitNominations").disabled=true;
         document.getElementById("modalSubmissionBtn").disabled=true;
-
+        document.getElementById("noNominatedMovies").style.color="black";
         document.getElementById("noNominatedMovies").innerText="No Nominated Movies";
         document.getElementById("noSubNominatedMovies").innerText="No Nominated Movies";
     }
