@@ -150,6 +150,7 @@ ul {
 .modal {
   left: 50px;
   top: 150px;
+  overflow-y: auto;
 }
 
 .modalTrigger {
