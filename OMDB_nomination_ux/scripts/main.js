@@ -193,7 +193,7 @@ function addMovieNominated(id,title,year,poster_url){
 
     var sub_ul = document.getElementById("submissionsNominationList"); 
     var sub_li = document.createElement("li");
-    li.setAttribute("id","sub"+id);
+    sub_li.setAttribute("id","sub"+id);
     var subInnerHTML="<img src='"+poster_url+"' width=50/> "+title+" ("+year+") <button type=\"button\" class=\"close\" onclick=\"removeNomination('ID"+id+"')\">&times;</button>"
     sub_li.innerHTML=subInnerHTML;
     document.getElementById("noSubNominatedMovies").innerText="";
