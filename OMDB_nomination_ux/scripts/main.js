@@ -159,10 +159,7 @@ function nominateMovie(id,title,year,poster_url){
        nominatedMovieIds.push(data[0]) ;
     });
     document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
-    addMovieNominated(id,title,year,poster_url);
-    if(nominatedMovies.length>=5){
-        alert("You have reached your max amount of nominations. Please Submit your nominations list.");
-    }    
+    addMovieNominated(id,title,year,poster_url); 
 }
 
 function setCollapsibleOnclick(){
@@ -204,8 +201,7 @@ function addMovieNominated(id,title,year,poster_url){
     console.log(ul);
     console.log(sub_ul);
     if(nominatedMovies.length>=5){
-        console.log("found 5");
-        alert("You have reached your max amount of nominations. Please Submit your nominations list.");
+        $("#submitNominationsModal").modal();
     } 
 
 }
@@ -279,5 +275,10 @@ async function setNominationList(ids){
 
 
 function submitNominations(){
-    
+    for(var i=0;i<nominatedMovies.length;i++){
+        removeNomination(nominatedMovies[i][0]);
+    }
+    $("#thankYouModal").modal();
+    document.getElementById("searchedItem").value = "";
+    removeAllList();
 }
