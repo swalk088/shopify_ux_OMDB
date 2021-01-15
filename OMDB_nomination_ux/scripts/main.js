@@ -99,6 +99,7 @@ function checkNominations(){
     current_searched_list.forEach(function(data){
         var btnEnabled=true;
         nominatedMovies.forEach(function(nomData){
+            console.log(nomData[0],data.imdbID);
             if(nomData[0]==data.imdbID){
                 btnEnabled=false;
                 
@@ -113,7 +114,7 @@ function checkNominations(){
             if(nominateBtn!==null){
                 var nominateBtChild=nominateBtn.childNodes[1]
                 console.log(nominateBtChild);
-                nominateBtChild.disabled =false;
+                nominateBtChild.disabled =true;
             }
         }else{
             var nominateBtn = document.getElementById(data.imdbID);
