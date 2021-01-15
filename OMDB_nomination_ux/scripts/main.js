@@ -124,9 +124,6 @@ function checkNominations(){
             }
         }
     });
-    if(nominatedMovies.length>=5){
-        alert("You have reached your max amount of nominations. Please Submit your nominations list.");
-    }    
 
 }
 
@@ -202,8 +199,10 @@ function addMovieNominated(id,title,year,poster_url){
     sub_li.innerHTML=subInnerHTML;
     document.getElementById("noSubNominatedMovies").innerText="";
     sub_ul.appendChild(sub_li);
-
-    checkNominations();
+    
+    if(nominatedMovies.length>=5){
+        alert("You have reached your max amount of nominations. Please Submit your nominations list.");
+    }    
 
 }
 function removeNomination(id){
