@@ -223,6 +223,8 @@ function removeNomination(id){
     }
     if(nominatedMovies.length==0){
         document.getElementById("submitNominations").disabled=true;
+        document.getElementById("modalSubmissionBtn").disabled=true;
+
         document.getElementById("noNominatedMovies").innerText="No Nominated Movies";
         document.getElementById("noSubNominatedMovies").innerText="No Nominated Movies";
     }
