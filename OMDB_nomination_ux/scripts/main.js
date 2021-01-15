@@ -206,7 +206,9 @@ function addMovieNominated(id,title,year,poster_url){
 
 }
 function removeNomination(id){
+    console.log("nomination"+id);
     var elem = document.getElementById("nomination"+id);
+    console.log(elem);
     elem.parentNode.removeChild(elem);
     var sub_elem = document.getElementById("sub"+id.replace("ID",""));
     sub_elem.parentNode.removeChild(sub_elem);
@@ -276,7 +278,7 @@ async function setNominationList(ids){
 
 function submitNominations(){
     for(var i=0;i<nominatedMovies.length;i++){
-        removeNomination(nominatedMovies[i][0]);
+        removeNomination("ID"+nominatedMovies[i][0]);
     }
     $("#thankYouModal").modal();
     document.getElementById("searchedItem").value = "";
