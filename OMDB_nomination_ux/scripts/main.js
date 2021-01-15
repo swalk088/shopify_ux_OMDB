@@ -204,7 +204,7 @@ function addMovieNominated(id,title,year,poster_url){
 function removeNomination(id){
     var elem = document.getElementById("nomination"+id);
     elem.parentNode.removeChild(elem);
-    var sub_elem = document.getElementById("sub"+id);
+    var sub_elem = document.getElementById("sub"+id.replace("ID",""));
     sub_elem.parentNode.removeChild(sub_elem);
     var i=0;
     for(i=0;i<nominatedMovies.length;i++){
