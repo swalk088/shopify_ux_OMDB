@@ -98,7 +98,7 @@ function loadListItem(id,title,year,poster_url,movie_info){
 }
 function checkNominations(){
     current_searched_list.forEach(function(data){
-        var btnEnabled=True;
+        var btnEnabled=true;
         nominatedMovies.forEach(function(nomData){
             if(nomData[0]==data.imdbID){
                 btnEnabled=false;
