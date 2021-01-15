@@ -277,10 +277,14 @@ async function setNominationList(ids){
 
 
 function submitNominations(){
+    var submission=[]
     for(var i=nominatedMovies.length-1;i>-1;i--){
+        submission.push(nominatedMovies[i][0]);
         removeNomination("ID"+nominatedMovies[i][0]);
     }
     $("#thankYouModal").modal();
     document.getElementById("searchedItem").value = "";
     removeAllList();
+
+    console.log(submission);
 }
