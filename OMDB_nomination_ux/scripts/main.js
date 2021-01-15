@@ -14,6 +14,9 @@ function setModalMovie(id){
                     notNominated=false;
                 }
             });
+            if(nominatedMovies.length>=5){
+                notNominated=false;
+            }
             if(notNominated){
                 
                 var modalNominateBtn = document.getElementById("modalNominateMovieBtn");
@@ -70,6 +73,9 @@ function loadListItem(id,title,year,poster_url,movie_info){
     li.setAttribute("id",id)
     console.log(title)
     var notNominated=true;
+    if(nominatedMovies.length>=5){
+        notNominated=false;
+    }
     nominatedMovies.forEach(function(nominatedData){
         if(nominatedData[0]==id){
             notNominated=false;
@@ -110,12 +116,7 @@ async function trackSearchChanges() {
 }
 
 function nominateMovie(id,title,year,poster_url){
-    var nominateBtn = document.getElementById(id.replace("ID",""));
-    if(nominateBtn!==null){
-        var nominateBtChild=nominateBtn.childNodes[1]
-        console.log(nominateBtChild);
-        nominateBtChild.disabled =true;
-    }
+    
     console.log(id,title,year,poster_url);
     $('#movieModal').modal('hide');
     nominatedMovies.push([id,title,year,poster_url]);
@@ -125,6 +126,27 @@ function nominateMovie(id,title,year,poster_url){
     });
     document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
     addMovieNominated(id,title,year,poster_url);
+    var notNominatedMax;
+    if(nominatedMovies.length>=5){
+        notNominatedMax=false;
+    }
+    if(notNominatedMax){
+        var nominateBtn = document.getElementById(id.replace("ID",""));
+        if(nominateBtn!==null){
+            var nominateBtChild=nominateBtn.childNodes[1]
+            console.log(nominateBtChild);
+            nominateBtChild.disabled =true;
+        }
+    }else{
+        current_searched_list.forEach(function(data){
+            var nominateBtn = document.getElementById(data.imdbID);
+            if(nominateBtn!==null){
+                var nominateBtChild=nominateBtn.childNodes[1]
+                console.log(nominateBtChild);
+                nominateBtChild.disabled =true;
+            }
+        });
+    }
 }
 
 function setCollapsibleOnclick(){
@@ -217,3 +239,4 @@ async function setNominationList(ids){
         document.cookie="\"nominatedList="+nominatedMovieIds+"\"";
         }
 }
+
