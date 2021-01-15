@@ -114,14 +114,14 @@ function checkNominations(){
             if(nominateBtn!==null){
                 var nominateBtChild=nominateBtn.childNodes[1]
                 console.log(nominateBtChild);
-                nominateBtChild.disabled =true;
+                nominateBtChild.disabled =false;
             }
         }else{
             var nominateBtn = document.getElementById(data.imdbID);
             if(nominateBtn!==null){
                 var nominateBtChild=nominateBtn.childNodes[1]
                 console.log(nominateBtChild);
-                nominateBtChild.disabled =false;
+                nominateBtChild.disabled =true;
             }
         }
     });
