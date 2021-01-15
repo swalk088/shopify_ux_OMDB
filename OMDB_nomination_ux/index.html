@@ -45,6 +45,7 @@
                     <ul id="nominationList">
                         <p id=noNominatedMovies>No Nominated Movies</p>
                     </ul>
+                    <button id="submitNominations" class="submit" type='button' class='modalTrigger' data-toggle='modal' data-target='#submitNominationsModal'>Submit Nominations</button>
                 </div>
             </div>
         </div>
@@ -73,6 +74,23 @@
             </div>
             <div class="modal-footer">
                 <button id="modalNominateMovieBtn" type="button" class="nominateBtn">Nominate</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="submitNominationsModal" role="dialog" style="overflow: auto">
+    <div class="modal-dialog" >
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="submissionTitle">My Nominations:</h2>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="nominatedMoviesSubmissionList">
+                <ul id="submissionsNominationList"></ul>
+            </div>
+            <div class="modal-footer">
+                <button id="modalSubmissionBtn" type="button" class="submissionBtn">Submit</button>
             </div>
         </div>
     </div>
