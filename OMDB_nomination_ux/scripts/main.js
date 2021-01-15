@@ -87,14 +87,13 @@ function loadListItem(id,title,year,poster_url,movie_info){
     if(notNominated){
         var innerHTML="<button type='button' class='modalTrigger' data-toggle='modal' data-target='#movieModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")  <button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")'>Nominate</button></button>"
     }else{
-        var innerHTML="<button type='button' class='modalTrigger' data-toggle='modal' data-target='#movieModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")  <button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")' disable>Nominate</button></button>"
+        var innerHTML="<button type='button' class='modalTrigger' data-toggle='modal' data-target='#movieModal' onclick='setModalMovie(\""+id+"\")'><img src='"+poster_url+"' width=50/> "+title+" ("+year+")  <button onclick='nominateMovie(\""+id+"\",\""+title+"\",\""+year+"\",\""+poster_url.toString()+"\")' disable='true'>Nominate</button></button>"
 
     }
     console.log(li)
     li.innerHTML=innerHTML;
-    checkNominations();
     ul.appendChild(li);
-    
+    checkNominations();
 }
 function checkNominations(){
     current_searched_list.forEach(function(data){
