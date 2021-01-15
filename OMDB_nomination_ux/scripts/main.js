@@ -124,6 +124,10 @@ function checkNominations(){
             }
         }
     });
+    if(nominatedMovies.length>=5){
+        alert("You have reached your max amount of nominations. Please Submit your nominations list.");
+    }    
+
 }
 
 
@@ -268,3 +272,7 @@ async function setNominationList(ids){
     }
 }
 
+
+function submitNominations(){
+    
+}
