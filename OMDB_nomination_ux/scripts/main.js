@@ -201,6 +201,7 @@ function addMovieNominated(id,title,year,poster_url){
     console.log(ul);
     console.log(sub_ul);
     document.getElementById("submitNominations").disabled=false;
+    document.getElementById("modalSubmissionBtn").disabled=false;
 
     if(nominatedMovies.length>=5){
         $("#submitNominationsModal").modal();
