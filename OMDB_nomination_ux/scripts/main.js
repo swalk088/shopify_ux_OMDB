@@ -200,6 +200,8 @@ function addMovieNominated(id,title,year,poster_url){
     sub_ul.appendChild(sub_li);
     console.log(ul);
     console.log(sub_ul);
+    document.getElementById("submitNominations").disabled=false;
+
     if(nominatedMovies.length>=5){
         $("#submitNominationsModal").modal();
     } 
@@ -220,9 +222,11 @@ function removeNomination(id){
         
     }
     if(nominatedMovies.length==0){
+        document.getElementById("submitNominations").disabled=true;
         document.getElementById("noNominatedMovies").innerText="No Nominated Movies";
         document.getElementById("noSubNominatedMovies").innerText="No Nominated Movies";
     }
+
     var nominateBtn = document.getElementById(id.replace("ID",""));
     if(nominateBtn!==null){
         var nominateBtChild=nominateBtn.childNodes[1]
