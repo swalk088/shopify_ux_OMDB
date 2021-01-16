@@ -48,8 +48,6 @@ async function getOMDBApiCall(searchedItem){
     var response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&s="+searchedItem+"*");
 //     console.log(response);
     current_searched_list=response.Search;
-    removeAllList();
-
     
     
 
@@ -127,34 +125,28 @@ function removeAllList(){
 
 
 async function trackSearchChanges() {
-    setTimeout(function () {
-        const searchedItem = document.getElementById("searchedItem").value;
-        if(searchedItem.trim()!==currentSearch){
-            
-            currentSearch=searchedItem;
-            console.log(searchedItem);
-            await getOMDBApiCall(searchedItem);
-            removeAllList();
-            if (current_searched_list!==undefined){
-                removeAllList();
+    var searchedItem = document.getElementById("searchedItem").value;
+    if(searchedItem.trim()!==currentSearch){
+        
+        currentSearch=searchedItem;
+        console.log(searchedItem);
+        await getOMDBApiCall(searchedItem);
+        removeAllList();
+        if (current_searched_list!==undefined){
+            for(var i=0;i<current_searched_list.length;i++){
+                if(document.getElementById(current_searched_list[i].imdbID)==undefined) {
+                    //console.log(current_searched_list[i]);
+                    var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&t="+current_searched_list[i].Title)
+                    console.log(title_response);
+                    loadListItem(current_searched_list[i].imdbID,
+                        current_searched_list[i].Title,current_searched_list[i].Year,
+                        current_searched_list[i].Poster,title_response);
+                    current_searched_list[i].movieInfo=title_response;
 
-                for(var i=0;i<current_searched_list.length;i++){
-                    if(document.getElementById(current_searched_list[i].imdbID)==undefined) {
-                        console.log(current_searched_list[i]);
-                        console.log(current_searched_list);
-                        var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&t="+current_searched_list[i].Title)
-                        //console.log(title_response);
-                        loadListItem(current_searched_list[i].imdbID,
-                            current_searched_list[i].Title,current_searched_list[i].Year,
-                            current_searched_list[i].Poster,title_response);
-                        current_searched_list[i].movieInfo=title_response;
-
-                    }
                 }
             }
         }
-        console.log('boo')
-    }, 100)
+    }
        
 }
 
