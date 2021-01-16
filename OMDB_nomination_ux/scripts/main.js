@@ -209,6 +209,7 @@ function addMovieNominated(id,title,year,poster_url){
         document.getElementById("noNominatedMovies").style.color="black";
         document.getElementById("noNominatedMovies").innerText="";
     }
+    checkNominations();
 
 }
 function removeNomination(id){
