@@ -4,7 +4,9 @@ var current_searched_list=[];
 
 const searchedItem = document.getElementById("searchedItem");
 
-searchedItem.addEventListener('keyup',(e)=>{
+searchedItem.addEventListener('keyup',(e)=>trackSearchChanges(e),false)
+
+async function trackSearchChanges(e) {
     const searchedValue=e.target.value;
     if(searchedValue.trim()!==currentSearch){
         currentSearch=searchedValue;
@@ -29,9 +31,7 @@ searchedItem.addEventListener('keyup',(e)=>{
             }
         }
     }
-});
-
-
+}
 
 
 
@@ -160,10 +160,6 @@ function removeAllList(){
 }
 
 
-async function trackSearchChanges() {
-    
-       
-}
 
 function nominateMovie(id,title,year,poster_url){
     
