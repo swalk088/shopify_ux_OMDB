@@ -292,6 +292,7 @@ function submitNominations(){
         submission.push(nominatedMovies[i][0]);
         removeNomination("ID"+nominatedMovies[i][0]);
     }
+    $('#submitNominationsModal').modal('hide');
     $("#thankYouModal").modal();
     document.getElementById("searchedItem").value = "";
     removeAllList();
