@@ -5,7 +5,7 @@ var current_searched_list=[];
 const searchedItem = document.getElementById("searchedItem");
 
 searchedItem.addEventListener('keyup',(e)=>{
-    const searchedValue=e;
+    const searchedValue=e.target.value;
     if(searchedValue.trim()!==currentSearch){
         currentSearch=searchedValue;
         console.log(searchedValue);
