@@ -2,40 +2,6 @@ var nominatedMovies=[];
 var currentSearch="";
 var current_searched_list=[];
 
-const searchedItem = document.getElementById("searchedItem");
-
-searchedItem.addEventListener('keyup',(e)=>trackSearchChanges(e),false)
-
-async function trackSearchChanges(e) {
-    const searchedValue=e.target.value;
-    if(searchedValue.trim()!==currentSearch){
-        currentSearch=searchedValue;
-        console.log(searchedValue);
-        await getOMDBApiCall(searchedValue);
-        removeAllList();
-        if (current_searched_list!==undefined){
-            removeAllList();
-
-            for(var i=0;i<current_searched_list.length;i++){
-                if(document.getElementById(current_searched_list[i].imdbID)==undefined) {
-                    console.log(current_searched_list[i]);
-                    console.log(current_searched_list);
-                    var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&t="+current_searched_list[i].Title)
-                    //console.log(title_response);
-                    loadListItem(current_searched_list[i].imdbID,
-                        current_searched_list[i].Title,current_searched_list[i].Year,
-                        current_searched_list[i].Poster,title_response);
-                    current_searched_list[i].movieInfo=title_response;
-
-                }
-            }
-        }
-    }
-}
-
-
-
-
 
 function setModalMovie(id){
     console.log(id);
@@ -160,6 +126,34 @@ function removeAllList(){
 }
 
 
+async function trackSearchChanges() {
+    const searchedItem = document.getElementById("searchedItem").value;
+    if(searchedItem.trim()!==currentSearch){
+        
+        currentSearch=searchedItem;
+        console.log(searchedItem);
+        await getOMDBApiCall(searchedItem);
+        removeAllList();
+        if (current_searched_list!==undefined){
+            removeAllList();
+
+            for(var i=0;i<current_searched_list.length;i++){
+                if(document.getElementById(current_searched_list[i].imdbID)==undefined) {
+                    console.log(current_searched_list[i]);
+                    console.log(current_searched_list);
+                    var title_response = await $.getJSON("http://www.omdbapi.com/?apikey=7f1de846&type=movie&t="+current_searched_list[i].Title)
+                    //console.log(title_response);
+                    loadListItem(current_searched_list[i].imdbID,
+                        current_searched_list[i].Title,current_searched_list[i].Year,
+                        current_searched_list[i].Poster,title_response);
+                    current_searched_list[i].movieInfo=title_response;
+
+                }
+            }
+        }
+    }
+       
+}
 
 function nominateMovie(id,title,year,poster_url){
     
